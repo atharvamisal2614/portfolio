@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Stats from "@/components/Stats";
@@ -13,11 +13,26 @@ import SmoothScrollProvider from "@/components/SmoothScrollProvider";
 // import RestoProjects from "@/components/RestoProjects";
 
 export default function Home() {
-  const [showPreloader, setShowPreloader] = useState(true);
+  const [showPreloader, setShowPreloader] = useState(false);
+
+  useEffect(() => {
+    // Check if preloader has been shown before
+    const hasSeenPreloader = localStorage.getItem("hasSeenPreloader");
+
+    if (!hasSeenPreloader) {
+      setShowPreloader(true);
+    }
+  }, []);
+
+  const handlePreloaderComplete = () => {
+    setShowPreloader(false);
+    // Mark that the preloader has been shown
+    localStorage.setItem("hasSeenPreloader", "true");
+  };
 
   return (
     <>
-      {showPreloader && <IntroPreloader onComplete={() => setShowPreloader(false)} />}
+      {showPreloader && <IntroPreloader onComplete={handlePreloaderComplete} />}
       <SmoothScrollProvider>
         <main className="min-h-screen bg-background text-foreground selection:bg-neon-blue selection:text-black">
 

@@ -194,48 +194,61 @@ export default function Projects() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {projects.map((project, index) => (
-                        <Link href={project.link} key={index}>
-                            <div
-                                className="group cursor-pointer relative bg-glass-bg border border-glass-border rounded-xl overflow-hidden hover:border-neon-blue/50 transition-colors duration-300"
-                            >
-                                {/* Hover glow */}
-                                <div className="absolute inset-0 bg-neon-blue/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                        <div
+                            key={index}
+                            className="group relative bg-glass-bg border border-glass-border rounded-xl overflow-hidden hover:border-neon-blue/50 transition-colors duration-300"
+                        >
+                            {/* Hover glow */}
+                            <div className="absolute inset-0 bg-neon-blue/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
-                                <div className="relative z-10">
+                            <div className="relative z-10">
 
-                                    {/* Project Image */}
-                                    <div className="h-48 w-full overflow-hidden border-b border-white/5">
-                                        <img
-                                            src={project.image}
-                                            alt={project.title}
-                                            className="h-full w-full object-cover opacity-80 group-hover:opacity-100 transition-all duration-300"
-                                        />
+                                {/* Project Image */}
+                                <div className="h-48 w-full overflow-hidden border-b border-white/5">
+                                    <img
+                                        src={project.image}
+                                        alt={project.title}
+                                        className="h-full w-full object-cover opacity-80 group-hover:opacity-100 transition-all duration-300"
+                                    />
+                                </div>
+
+                                {/* Content */}
+                                <div className="p-6">
+                                    <h3 className="text-xl font-bold text-white mb-2 group-hover:text-neon-blue transition-colors">
+                                        {project.title}
+                                    </h3>
+
+                                    <p className="text-gray-400 mb-4 text-sm">
+                                        {project.description}
+                                    </p>
+
+                                    <div className="flex flex-wrap gap-2 mb-4">
+                                        {project.tags.map((tag, i) => (
+                                            <span
+                                                key={i}
+                                                className="text-xs px-2 py-1 rounded-full bg-white/5 text-gray-300 border border-white/10"
+                                            >
+                                                {tag}
+                                            </span>
+                                        ))}
                                     </div>
 
-                                    {/* Content */}
-                                    <div className="p-6">
-                                        <h3 className="text-xl font-bold text-white mb-2 group-hover:text-neon-blue transition-colors">
-                                            {project.title}
-                                        </h3>
-
-                                        <p className="text-gray-400 mb-4 text-sm">
-                                            {project.description}
-                                        </p>
-
-                                        <div className="flex flex-wrap gap-2">
-                                            {project.tags.map((tag, i) => (
-                                                <span
-                                                    key={i}
-                                                    className="text-xs px-2 py-1 rounded-full bg-white/5 text-gray-300 border border-white/10"
-                                                >
-                                                    {tag}
-                                                </span>
-                                            ))}
-                                        </div>
+                                    {/* Explore Button */}
+                                    <div className="text-center mt-4">
+                                        <Link
+                                            className="button-animation inline-block"
+                                            href={project.link}
+                                        >
+                                            Explore
+                                            <span></span>
+                                            <span></span>
+                                            <span></span>
+                                            <span></span>
+                                        </Link>
                                     </div>
                                 </div>
                             </div>
-                        </Link>
+                        </div>
                     ))}
                 </div>
             </div>
